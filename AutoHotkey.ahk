@@ -33,6 +33,8 @@ XButton2::
       Send {Home}
    Else If (p = "00")
       Send {F5}
+   Else If (p = "01")
+      Send !{Right}
    Else
       MsgBox Press pattern %p%
 Return
@@ -43,6 +45,8 @@ XButton1::
       Send {End}
    Else If (p = "00")
       Send +{F5}
+   Else If (p = "01")
+      Send !{Left}
    Else
       MsgBox Press pattern %p%
 Return
