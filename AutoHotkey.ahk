@@ -12,7 +12,7 @@ XButton2 & XButton1::Send ^;
 XButton1 & XButton2::Send ^;
 
 XButton2 & LButton::Send {Backspace}
-XButton2 & RButton::Send {Delete}
+XButton2 & RButton::Send {Enter}
 
 Morse(timeout = 200) { 
    tout := timeout/1000
