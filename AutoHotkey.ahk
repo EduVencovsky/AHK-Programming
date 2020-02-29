@@ -1,18 +1,26 @@
 #InstallKeybdHook
 
-;https://autohotkey.com/board/topic/15574-morse-find-hotkey-press-and-hold-patterns/
+; https://autohotkey.com/board/topic/15574-morse-find-hotkey-press-and-hold-patterns/
 
-XButton1 & WheelUp::Send {Volume_Up}
-XButton1 & WheelDown::Send {Volume_Down}
+; F13 and F14 are valid keys but not used, so I added it to logitech's software and handle it here
+;
+; https://www.reddit.com/r/AutoHotkey/comments/945x2q/unused_keys_for_mapping/
+;
+; Use this command to set FN key when in logitech's software
+;
+; LButton::Send {F15}
 
-XButton2 & WheelUp::Send {WheelRight}
-XButton2 & WheelDown::Send {WheelLeft}
+F13 & WheelUp::Send {Volume_Up}
+F13 & WheelDown::Send {Volume_Down}
 
-XButton2 & XButton1::Send ^;
-XButton1 & XButton2::Send ^;
+F14 & WheelUp::Send {WheelRight}
+F14 & WheelDown::Send {WheelLeft}
 
-XButton2 & LButton::Send {Backspace}
-XButton2 & RButton::Send {Enter}
+F14 & F13::Send ^;
+F13 & F14::Send ^;
+
+F14 & LButton::Send {Backspace}
+F14 & RButton::Send {Enter}
 
 Morse(timeout = 200) { 
    tout := timeout/1000
@@ -27,7 +35,7 @@ Morse(timeout = 200) {
    }
 }
 
-XButton2::
+F14::
    p := Morse()
    If (p = "0")
       Send {Home}
@@ -39,7 +47,7 @@ XButton2::
       MsgBox Press pattern %p%
 Return
 
-XButton1::
+F13::
    p := Morse()
    If (p = "0")
       Send {End}
@@ -51,7 +59,7 @@ XButton1::
       MsgBox Press pattern %p%
 Return
 
-+XButton2::
++F14::
    p := Morse()
    If (p = "0")
       Send +{Home}
@@ -61,7 +69,7 @@ Return
       MsgBox Press pattern %p%
 Return
 
-+XButton1::
++F13::
    p := Morse()
    If (p = "0")
       Send +{End}
@@ -71,7 +79,7 @@ Return
       MsgBox Press pattern %p%
 Return
 
-^XButton2::
+^F14::
    p := Morse()
    If (p = "0")
       Send ^{Home}
@@ -81,7 +89,7 @@ Return
       MsgBox Press pattern %p%
 Return
 
-^XButton1::
+^F13::
    p := Morse()
    If (p = "0")
       Send ^{End}
@@ -91,7 +99,7 @@ Return
       MsgBox Press pattern %p%
 Return
 
-^+XButton2::
+^+F14::
    p := Morse()
    If (p = "0")
       Send ^+{Home}
@@ -101,7 +109,7 @@ Return
       MsgBox Press pattern %p%
 Return
 
-^+XButton1::
+^+F13::
    p := Morse()
    If (p = "0")
       Send ^+{End}
